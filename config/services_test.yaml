@@ -1,0 +1,16 @@
+# config/services_test.yaml
+services:
+    _defaults:
+        public: false
+        autowire: true
+        autoconfigure: true
+
+    App\HttpClient\CrmHttpClient:
+        public: true
+        arguments:
+            $baseUrl: '%env(resolve:CRM_API_BASE_URL)%'
+            $apiToken: '%env(resolve:CRM_API_TOKEN)%'
+
+    App\HttpClient\CrmApiClientInterface:
+        alias: App\HttpClient\CrmHttpClient
+        public: true
